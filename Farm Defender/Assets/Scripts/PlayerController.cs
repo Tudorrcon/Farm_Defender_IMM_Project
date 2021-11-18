@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private float speed = 30.0f;
+    private float speed = 10.0f;
     private Rigidbody playerRb;
-    private float upperZLimit = 10;
-    private float lowerZLimit = 10;
-    private float upperXLimit = -0.67f;
-    private float lowerXLimit = -9.65f;
+    //private float upperZLimit = 10;
+    //private float lowerZLimit = 10;
+    //private float upperXLimit = -0.67f;
+    //private float lowerXLimit = -9.65f;
 
-    public GameObject projectilePrefab;
+    private float ZLowerLimit = 9.50f;
+    private float ZHigherLimit = -0.60f;
+    private float XLeftLimit = 10.5f;
+
+    private float XRightLimit = 6.35f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +33,47 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.forward * speed * verticalInput);
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
 
-        if(transform.position.z < lowerZLimit)
+
+        
+
+
+
+        if(transform.position.z < -ZLowerLimit)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -ZLowerLimit);
+        }
+
+        if(transform.position.z > ZLowerLimit)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, ZLowerLimit);
+        }
+
+        if(transform.position.x < -XLeftLimit)
+        {
+            transform.position = new Vector3(-XLeftLimit, transform.position.y, transform.position.z);
+        }
+
+        if(transform.position.x > XLeftLimit)
+        {
+            transform.position = new Vector3(XLeftLimit, transform.position.y, transform.position.z);
+        }
+
+        ///
+        
+
+        if(transform.position.z > ZHigherLimit)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, ZHigherLimit);
+        }
+
+
+        if(transform.position.x > XRightLimit)
+        {
+            transform.position = new Vector3(XRightLimit, transform.position.y, transform.position.z);
+        }
+
+
+        /*if(transform.position.z < lowerZLimit)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, lowerZLimit);
         }
@@ -47,13 +91,9 @@ public class PlayerController : MonoBehaviour
         if(transform.position.z > upperXLimit)
         {
             transform.position = new Vector3(upperXLimit, transform.position.y, transform.position.z);
-        }
+        }*/
 
         //if statement for shooting projectile
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-        }
 
     }
 }
