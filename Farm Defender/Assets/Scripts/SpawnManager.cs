@@ -6,9 +6,10 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject zombiePrefab;
 
-    private float spawnLimitZLeft = 4;
-    private float spawnLimitZRight = -14;
+    private float spawnLimitZLeft = -23;
+    private float spawnLimitZRight = 18;
     private float spawnPosY = 1;
+    private float spawnPosX = -1.65f;
 
     private float startDelay = 1;
     private float spawnInterval;
@@ -23,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     void SpawnZombieLow()
     {
         
-        Vector3 spawnPos = new Vector3(-6, spawnPosY,  Random.Range(spawnLimitZLeft, spawnLimitZRight));
+        Vector3 spawnPos = new Vector3(Random.Range(spawnLimitZLeft, spawnLimitZRight), spawnPosY, spawnPosX );
 
         // instantiate zombie at random spawn location
         Instantiate(zombiePrefab, spawnPos, zombiePrefab.transform.rotation);

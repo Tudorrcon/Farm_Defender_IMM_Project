@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
 
     private float speed = 30.0f;
     private Rigidbody playerRb;
-    private float zLimit = 10;
-    private float xLimit = 5;
+    private float upperZLimit = 10;
+    private float lowerZLimit = 10;
+    private float upperXLimit = -0.67f;
+    private float lowerXLimit = -9.65f;
 
     public GameObject projectilePrefab;
 
@@ -27,24 +29,24 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.forward * speed * verticalInput);
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
 
-        if(transform.position.z < -zLimit)
+        if(transform.position.z < lowerZLimit)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -zLimit);
+            transform.position = new Vector3(transform.position.x, transform.position.y, lowerZLimit);
         }
 
-        if(transform.position.z > zLimit)
+        if(transform.position.z > upperZLimit)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zLimit);
+            transform.position = new Vector3(transform.position.x, transform.position.y, upperZLimit);
         }
 
-        if(transform.position.x < -xLimit)
+        if(transform.position.x < lowerXLimit)
         {
-            transform.position = new Vector3(-xLimit, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-lowerXLimit, transform.position.y, transform.position.z);
         }
 
-        if(transform.position.z > xLimit)
+        if(transform.position.z > upperXLimit)
         {
-            transform.position = new Vector3(xLimit, transform.position.y, transform.position.z);
+            transform.position = new Vector3(upperXLimit, transform.position.y, transform.position.z);
         }
 
         //if statement for shooting projectile
