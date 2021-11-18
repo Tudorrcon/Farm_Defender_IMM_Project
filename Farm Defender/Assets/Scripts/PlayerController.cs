@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private float speed = 10.0f;
+    private float speed = 30.0f;
     private Rigidbody playerRb;
     private float zLimit = 10;
     private float xLimit = 5;
+
+    public GameObject projectilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,12 @@ public class PlayerController : MonoBehaviour
         if(transform.position.z > xLimit)
         {
             transform.position = new Vector3(xLimit, transform.position.y, transform.position.z);
+        }
+
+        //if statement for shooting projectile
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
 
     }
