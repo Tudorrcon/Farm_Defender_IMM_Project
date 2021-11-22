@@ -7,16 +7,9 @@ public class PlayerController : MonoBehaviour
 
     private float speed = 10.0f;
     private Rigidbody playerRb;
-    //private float upperZLimit = 10;
-    //private float lowerZLimit = 10;
-    //private float upperXLimit = -0.67f;
-    //private float lowerXLimit = -9.65f;
 
-    private float ZLowerLimit = 9.50f;
-    private float ZHigherLimit = -0.60f;
-    private float XLeftLimit = 10.5f;
-
-    private float XRightLimit = 6.35f;
+    private float ZLimit = 8.5f;
+    private float XLimit = 15.7f;
 
     // Start is called before the first frame update
     void Start()
@@ -38,62 +31,25 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if(transform.position.z < -ZLowerLimit)
+        if(transform.position.z < -ZLimit)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -ZLowerLimit);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -ZLimit);
         }
 
-        if(transform.position.z > ZLowerLimit)
+        if(transform.position.z > ZLimit)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, ZLowerLimit);
+            transform.position = new Vector3(transform.position.x, transform.position.y, ZLimit);
         }
 
-        if(transform.position.x < -XLeftLimit)
+        if(transform.position.x < -XLimit)
         {
-            transform.position = new Vector3(-XLeftLimit, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-XLimit, transform.position.y, transform.position.z);
         }
 
-        if(transform.position.x > XLeftLimit)
+        if(transform.position.x > XLimit)
         {
-            transform.position = new Vector3(XLeftLimit, transform.position.y, transform.position.z);
+            transform.position = new Vector3(XLimit, transform.position.y, transform.position.z);
         }
-
-        ///
-        
-
-        if(transform.position.z > ZHigherLimit)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, ZHigherLimit);
-        }
-
-
-        if(transform.position.x > XRightLimit)
-        {
-            transform.position = new Vector3(XRightLimit, transform.position.y, transform.position.z);
-        }
-
-
-        /*if(transform.position.z < lowerZLimit)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, lowerZLimit);
-        }
-
-        if(transform.position.z > upperZLimit)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, upperZLimit);
-        }
-
-        if(transform.position.x < lowerXLimit)
-        {
-            transform.position = new Vector3(-lowerXLimit, transform.position.y, transform.position.z);
-        }
-
-        if(transform.position.z > upperXLimit)
-        {
-            transform.position = new Vector3(upperXLimit, transform.position.y, transform.position.z);
-        }*/
-
-        //if statement for shooting projectile
 
     }
 }
