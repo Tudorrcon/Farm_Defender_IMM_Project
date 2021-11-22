@@ -42,7 +42,7 @@ public class SpawnManager : MonoBehaviour
         if (enemyCount == 0)
         {
             waveNumber++;
-            if (waveNumber > 4)
+            if (waveNumber > 4 && waveNumber < 10)
             {
                 zombiePrefab.GetComponent<EnemyLow>().speed = 10;
             }
