@@ -5,30 +5,25 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject zombiePrefab;
-    
 
     private float XLimit = 8.5f;
     private float spawnPosY = 1;
     private float spawnPosZ = 10.5f;
 
-    private float startDelay = 1;
-    private float spawnInterval;
-
     public int enemyCount;
+    public int waveNumber = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemyWave(3);
-        //spawnInterval = Random.Range(1, 3);
-        //InvokeRepeating("SpawnZombieLow", startDelay, spawnInterval);
+        SpawnEnemyWave(waveNumber);
     }
 
     Vector3 GenerateSpawnPosition()
     {
-        Vector3 spawnPos = new Vector3(Random.Range(-XLimit, XLimit), spawnPosY, spawnPosZ);
+        Vector3 randomSpawnPos = new Vector3(Random.Range(-XLimit, XLimit), spawnPosY, spawnPosZ);
 
-        return spawnPos;
+        return randomSpawnPos;
     }
 
     void SpawnEnemyWave(int enemiesToSpawn)
@@ -42,6 +37,26 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyCount = FindObjectsOfType<EnemyLow>().Length;
+
+        if (enemyCount == 0)
+        {
+            waveNumber++;
+            if (waveNumber > 4)
+            {
+                zombiePrefab.GetComponent<EnemyLow>().speed = 10;
+            }
+            else if (waveNumber > 9)
+            {
+                zombiePrefab.GetComponent<EnemyLow>().speed = 15;
+            }
+            else
+            {
+                zombiePrefab.GetComponent<EnemyLow>().speed = 5;
+            }
+            SpawnEnemyWave(waveNumber);
+        }
+
         
     }
 }
