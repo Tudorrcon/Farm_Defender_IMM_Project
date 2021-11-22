@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -390,7 +390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470721377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.06, y: 0.5, z: -7.66}
+  m_LocalPosition: {x: 0.11, y: 0.555, z: -8.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b654c1e2c8bc3b4a80a2a779bef9b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &1738845471
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475067da26d57294abd527f4ae21868c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombiePrefab: {fileID: 7886747538652780835, guid: cc76e8ac1ecc3c94b9b071a46fc757fb, type: 3}
+  zombiePrefab: {fileID: 2403063027686611378, guid: de25d428e37dd2c4b834c73a19fac4cd, type: 3}
+  enemyCount: 0
+  waveNumber: 1
 --- !u!4 &1939566186
 Transform:
   m_ObjectHideFlags: 0
