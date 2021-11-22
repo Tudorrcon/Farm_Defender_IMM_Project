@@ -6,33 +6,57 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject zombiePrefab;
 
-    private float spawnLimitZLeft = -23;
-    private float spawnLimitZRight = 18;
+    private float XLimit = 8.5f;
     private float spawnPosY = 1;
-    private float spawnPosX = -1.65f;
+    private float spawnPosZ = 10.5f;
 
-    private float startDelay = 1;
-    private float spawnInterval;
+    public int enemyCount;
+    public int waveNumber = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnInterval = Random.Range(1, 3);
-        InvokeRepeating("SpawnZombieLow", startDelay, spawnInterval);
+        SpawnEnemyWave(waveNumber);
     }
 
-    void SpawnZombieLow()
+    Vector3 GenerateSpawnPosition()
     {
-        
-        Vector3 spawnPos = new Vector3(Random.Range(spawnLimitZLeft, spawnLimitZRight), spawnPosY, spawnPosX );
+        Vector3 randomSpawnPos = new Vector3(Random.Range(-XLimit, XLimit), spawnPosY, spawnPosZ);
 
-        // instantiate zombie at random spawn location
-        Instantiate(zombiePrefab, spawnPos, zombiePrefab.transform.rotation);
+        return randomSpawnPos;
+    }
+
+    void SpawnEnemyWave(int enemiesToSpawn)
+    {
+        for(int i = 0; i < enemiesToSpawn; i++)
+        {
+            Instantiate(zombiePrefab, GenerateSpawnPosition(), zombiePrefab.transform.rotation);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        enemyCount = FindObjectsOfType<EnemyLow>().Length;
+
+        if (enemyCount == 0)
+        {
+            waveNumber++;
+            if (waveNumber > 4 && waveNumber < 10)
+            {
+                zombiePrefab.GetComponent<EnemyLow>().speed = 10;
+            }
+            else if (waveNumber > 9)
+            {
+                zombiePrefab.GetComponent<EnemyLow>().speed = 15;
+            }
+            else
+            {
+                zombiePrefab.GetComponent<EnemyLow>().speed = 5;
+            }
+            SpawnEnemyWave(waveNumber);
+        }
+
         
     }
 }
