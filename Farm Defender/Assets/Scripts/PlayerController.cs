@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 10.0f;
+    
     private Rigidbody playerRb;
+    public float speed = 10.0f;
 
     private float ZLimit = 8.5f;
     private float XLimit = 15.7f;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(XLimit, transform.position.y, transform.position.z);
         }
+
 
     }
 }
