@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnemyHigh : MonoBehaviour
 { 
-    private Rigidbody enemyLowRb;
     public int health = 2;
     public float speed;
+    private int pointValue = 10;
+
     // Start is called before the first frame update
     void Start()
     {
-        enemyLowRb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
