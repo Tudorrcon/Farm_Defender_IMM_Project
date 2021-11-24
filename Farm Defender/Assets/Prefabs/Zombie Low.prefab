@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2050864866043113042}
   - component: {fileID: 4345875734843952180}
   m_Layer: 0
-  m_Name: ZombieL
+  m_Name: Zombie Low
   m_TagString: ZombieLow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

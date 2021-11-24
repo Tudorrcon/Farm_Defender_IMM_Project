@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyLow : MonoBehaviour
 {
-
-    public float speed = 10;
     private Rigidbody enemyLowRb;
+    public int health = 1;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject zombiePrefab;
+    public GameObject enemyHighPrefab;
+    public GameObject enemyLowPrefab;
 
     private float XLimit = 8.5f;
     private float spawnPosY = 1;
@@ -28,31 +29,44 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemyWave(int enemiesToSpawn)
     {
-        for(int i = 0; i < enemiesToSpawn; i++)
+
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(zombiePrefab, GenerateSpawnPosition(), zombiePrefab.transform.rotation);
+            Instantiate(enemyLowPrefab, GenerateSpawnPosition(), enemyLowPrefab.transform.rotation);
+        }
+        
+        if (enemiesToSpawn > 7 && enemiesToSpawn <10)
+        {
+            Instantiate(enemyHighPrefab, GenerateSpawnPosition(), enemyHighPrefab.transform.rotation);
+        }
+        if (enemiesToSpawn > 9)
+        {
+            Instantiate(enemyHighPrefab, GenerateSpawnPosition(), enemyHighPrefab.transform.rotation);
+            Instantiate(enemyHighPrefab, GenerateSpawnPosition(), enemyHighPrefab.transform.rotation);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyCount = FindObjectsOfType<EnemyLow>().Length;
+        enemyCount = FindObjectsOfType<EnemyLow>().Length + FindObjectsOfType<EnemyHigh>().Length;
 
         if (enemyCount == 0)
         {
             waveNumber++;
-            if (waveNumber > 4 && waveNumber < 10)
+            if (waveNumber > 0 && waveNumber < 5)
             {
-                zombiePrefab.GetComponent<EnemyLow>().speed = 10;
+                enemyLowPrefab.GetComponent<EnemyLow>().speed = 10;
             }
-            else if (waveNumber > 9)
+            else if (waveNumber > 4 && waveNumber < 10)
             {
-                zombiePrefab.GetComponent<EnemyLow>().speed = 15;
+                enemyLowPrefab.GetComponent<EnemyLow>().speed = 7;
+                enemyHighPrefab.GetComponent<EnemyHigh>().speed = 10;
             }
             else
             {
-                zombiePrefab.GetComponent<EnemyLow>().speed = 5;
+                enemyLowPrefab.GetComponent<EnemyLow>().speed = 10;
+                enemyHighPrefab.GetComponent<EnemyHigh>().speed = 13;
             }
             SpawnEnemyWave(waveNumber);
         }
