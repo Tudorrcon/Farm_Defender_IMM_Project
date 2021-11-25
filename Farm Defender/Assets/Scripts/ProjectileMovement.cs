@@ -19,7 +19,7 @@ public class ProjectileMovement : MonoBehaviour
     {
         if(playerController.hasPowerup == true)
         {
-            speed = 30.0f;
+            speed = 60.0f;
         }
         
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
@@ -47,15 +47,4 @@ public class ProjectileMovement : MonoBehaviour
             }
         }
     }
-        /*
-                if (other.gameObject.CompareTag("EnemyHighTag") && enemyHighObj.health == 0)
-                {
-                    Destroy(gameObject);
-                    Destroy(other.gameObject);
-                }
-                else if (other.gameObject.CompareTag("EnemyHighTag") && enemyHighObj.health > 0)
-                {
-                    enemyHighObj.health -= 1;
-                }
-        */
-   }
+}

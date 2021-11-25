@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        powerupPrefab.SetActive(true);
         SpawnEnemyWave(waveNumber);
     }
 
@@ -57,6 +58,8 @@ public class SpawnManager : MonoBehaviour
         {
             Instantiate(powerupPrefab, GeneratePowerUpSpawnPosition(), powerupPrefab.transform.rotation);
         }
+
+        
        
         
         if (enemiesToSpawn > 7 && enemiesToSpawn <10)
@@ -92,7 +95,7 @@ public class SpawnManager : MonoBehaviour
                 enemyLowPrefab.GetComponent<EnemyLow>().speed = 10;
                 enemyHighPrefab.GetComponent<EnemyHigh>().speed = 13;
             }
-            SpawnEnemyWave(waveNumber);
+            SpawnEnemyWave(waveNumber); 
         }
 
         
