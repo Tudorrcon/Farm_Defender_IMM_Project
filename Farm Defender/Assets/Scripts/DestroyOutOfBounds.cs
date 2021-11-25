@@ -6,6 +6,8 @@ public class DestroyOutOfBounds : MonoBehaviour
 {
     private float bottomLimit = -9.7f;
     private float lateralLimit = 15.6f;
+
+
     // Start is called before the first frame update
     void Start()
     {

@@ -94,7 +94,6 @@ public class SpawnManager : MonoBehaviour
             }
             SpawnEnemyWave(waveNumber);
         }
-
         
     }
 }
