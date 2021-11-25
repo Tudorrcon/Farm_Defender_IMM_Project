@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 10.0f;
-    private Rigidbody playerRb;
+    public GameObject projectile;
+    public GameObject powerupIndicator;
+
+    private float powerUpStrength = 15;
+    private float speed = 10.0f;
+    public bool hasPowerup = false;
 
     private float ZLimit = 8.5f;
     private float XLimit = 15.7f;
@@ -14,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();    
+           
     }
 
     // Update is called once per frame
@@ -23,15 +27,11 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        playerRb.AddForce(Vector3.forward * speed * verticalInput);
-        playerRb.AddForce(Vector3.right * speed * horizontalInput);
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
 
 
-        
-
-
-
-        if(transform.position.z < -ZLimit)
+        if (transform.position.z < -ZLimit)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -ZLimit);
         }
@@ -51,5 +51,30 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(XLimit, transform.position.y, transform.position.z);
         }
 
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Launch a projectile from the player.
+            Instantiate(projectile, transform.position, projectile.transform.rotation);
+        }
+    }
+
+    IEnumerator PowerUpCountdown()
+    {
+        yield return new WaitForSeconds(7);
+        hasPowerup = false;
+        powerupIndicator.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUpTag"))
+        {
+            hasPowerup = true;
+            powerupIndicator.gameObject.SetActive(true);
+            Destroy(other.gameObject);
+            StartCoroutine(PowerUpCountdown());
+        }
     }
 }

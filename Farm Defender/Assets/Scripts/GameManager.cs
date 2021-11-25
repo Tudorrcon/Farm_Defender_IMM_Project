@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLow : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public int health = 1;
-    public float speed;
-    private int pointValue = 5;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +13,6 @@ public class EnemyLow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        
     }
 }
