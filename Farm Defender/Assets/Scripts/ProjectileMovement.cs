@@ -7,6 +7,7 @@ public class ProjectileMovement : MonoBehaviour
     private float speed = 20.0f;
     private PlayerController playerController;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,21 +32,30 @@ public class ProjectileMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("EnemyLowTag"))
+        if (other.gameObject.CompareTag("EnemyLowTag"))
         {
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
-/*
-        if (other.gameObject.CompareTag("EnemyHighTag") && enemyHighObj.health == 0)
+        if (other.gameObject.CompareTag("EnemyHighTag"))
         {
-            Destroy(gameObject);
-            Destroy(other.gameObject);
+            EnemyHigh scriptEnemy = other.gameObject.GetComponent<EnemyHigh>();
+            scriptEnemy.health--;
+            if (scriptEnemy.health == 0)
+            {
+                Destroy(other.gameObject);
+            }
         }
-        else if (other.gameObject.CompareTag("EnemyHighTag") && enemyHighObj.health > 0)
-        {
-            enemyHighObj.health -= 1;
-        }
-*/
     }
-}
+        /*
+                if (other.gameObject.CompareTag("EnemyHighTag") && enemyHighObj.health == 0)
+                {
+                    Destroy(gameObject);
+                    Destroy(other.gameObject);
+                }
+                else if (other.gameObject.CompareTag("EnemyHighTag") && enemyHighObj.health > 0)
+                {
+                    enemyHighObj.health -= 1;
+                }
+        */
+   }
