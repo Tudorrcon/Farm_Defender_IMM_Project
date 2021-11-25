@@ -6,7 +6,6 @@ public class EnemyLow : MonoBehaviour
 {
     public int health = 1;
     public float speed;
-    private int pointValue = 5;
 
     // Start is called before the first frame update
     void Start()
