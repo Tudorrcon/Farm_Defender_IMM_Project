@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyHigh : MonoBehaviour
 { 
     public int health = 2;
-    public float speed;
+    public int score = 10;
+    public float speed; 
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,4 @@ public class EnemyHigh : MonoBehaviour
     {
         transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
-
-   
 }

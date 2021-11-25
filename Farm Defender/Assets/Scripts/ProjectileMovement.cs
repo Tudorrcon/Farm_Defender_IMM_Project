@@ -6,11 +6,15 @@ public class ProjectileMovement : MonoBehaviour
 {
     private float speed = 20.0f;
     private PlayerController playerController;
+    private GameManager gameManager;
+    public int pointValueLow;
+    public int pointValueHigh;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -34,16 +38,21 @@ public class ProjectileMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EnemyLowTag"))
         {
+            EnemyLow scriptEnemyLow = other.gameObject.GetComponent<EnemyLow>();
             Destroy(gameObject);
             Destroy(other.gameObject);
+            gameManager.UpdateScore(scriptEnemyLow.score);
         }
         if (other.gameObject.CompareTag("EnemyHighTag"))
         {
-            EnemyHigh scriptEnemy = other.gameObject.GetComponent<EnemyHigh>();
-            scriptEnemy.health--;
-            if (scriptEnemy.health == 0)
+            EnemyHigh scriptEnemyHigh = other.gameObject.GetComponent<EnemyHigh>();
+            Destroy(gameObject);
+            scriptEnemyHigh.health--;
+            if (scriptEnemyHigh.health == 0)
             {
+                Destroy(gameObject);
                 Destroy(other.gameObject);
+                gameManager.UpdateScore(scriptEnemyHigh.score);
             }
         }
     }

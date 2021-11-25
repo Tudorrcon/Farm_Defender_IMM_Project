@@ -83,17 +83,17 @@ public class SpawnManager : MonoBehaviour
             waveNumber++;
             if (waveNumber > 0 && waveNumber < 5)
             {
-                enemyLowPrefab.GetComponent<EnemyLow>().speed = 10;
+                enemyLowPrefab.GetComponent<EnemyLow>().speed = 3;
             }
             else if (waveNumber > 4 && waveNumber < 10)
             {
-                enemyLowPrefab.GetComponent<EnemyLow>().speed = 10;
-                enemyHighPrefab.GetComponent<EnemyHigh>().speed = 3;
+                enemyLowPrefab.GetComponent<EnemyLow>().speed = 4;
+                enemyHighPrefab.GetComponent<EnemyHigh>().speed = 5;
             }
             else
             {
-                enemyLowPrefab.GetComponent<EnemyLow>().speed = 10;
-                enemyHighPrefab.GetComponent<EnemyHigh>().speed = 13;
+                enemyLowPrefab.GetComponent<EnemyLow>().speed = 6;
+                enemyHighPrefab.GetComponent<EnemyHigh>().speed = 7;
             }
             SpawnEnemyWave(waveNumber); 
         }
