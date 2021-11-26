@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI winningText;
     public Button titleScreenButton;
     public bool isGameActive;
     public int scoreTotal = 0;
@@ -50,6 +51,14 @@ public class GameManager : MonoBehaviour
         titleScreenButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
+    }
+
+    public void Winning()
+    {
+        titleScreenButton.gameObject.SetActive(true);
+        winningText.gameObject.SetActive(true);
+        isGameActive = false;
+        Time.timeScale = 0;
     }
 
     
